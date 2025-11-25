@@ -1,7 +1,8 @@
 import express from 'express';
 import Task from './taskModel';
+import asyncHandler from 'express-async-handler';
 
-const router = express.Router(); // eslint-disable-line
+const router = express.Router()// eslint-disable-line
 
 // Get all tasks
 router.get('/', async (req, res) => {
@@ -10,9 +11,9 @@ router.get('/', async (req, res) => {
 });
 
 // create a task
-router.post('/', async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => {
     const task = await Task(req.body).save();
     res.status(201).json(task);
-});
+}));
 
 export default router;
