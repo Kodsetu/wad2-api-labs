@@ -20,7 +20,7 @@ UserSchema.statics.findByUserName = function (username) {
   return this.findOne({ username: username });
 };
 
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
   const saltRounds = 10; // You can adjust the number of salt rounds
   //const user = this;
   if (this.isModified('password') || this.isNew) {
